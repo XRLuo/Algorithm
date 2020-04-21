@@ -23,28 +23,9 @@ public:
             vector<int> pt(2,-1);
             return pt;
         }
-        vector<int> pt;
+		vector<int> pt;
+
         int left = 0, right = nums.size()-1;
-        //find last pos
-        while(left<=right){
-            int mid = left+(right-left)/2;
-            if(target == nums[mid]){
-                left = mid + 1;
-            }
-            else if(target > nums[mid]){
-                left = mid + 1;
-            }
-            else if(target < nums[mid]){
-                right = mid - 1;
-            }
-        }
-        if( right<0||nums[right]!=target){
-            pt.push_back(-1);
-            pt.push_back(-1);
-            return pt;
-        }
-        pt.push_back(right);
-        left = 0, right = nums.size()-1;
         // find first pos
         while(left<=right){
             int mid = left+(right-left)/2;
@@ -58,9 +39,28 @@ public:
                 right = mid - 1;
             }
         }
+         if( left>=nums.size()||nums[left]!=target){
+            pt.push_back(-1);
+            pt.push_back(-1);
+            return pt;
+        }
         pt.push_back(left);
-        vector<int> npt = {pt[1],pt[0]};
-        return npt;
+        left = 0, right = nums.size()-1;
+        //find last pos
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(target == nums[mid]){
+                left = mid + 1;
+            }
+            else if(target > nums[mid]){
+                left = mid + 1;
+            }
+            else if(target < nums[mid]){
+                right = mid - 1;
+            }
+        }
+        pt.push_back(right);
+        return pt;
     }
 };
 ```
