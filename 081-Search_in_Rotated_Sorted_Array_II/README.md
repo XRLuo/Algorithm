@@ -16,8 +16,8 @@ public:
         while(l<=r){
             int mid = l+(r-l)/2;
             if(nums[mid]==target) return true;
-            if(nums[l]==nums[mid]) {++l; continue;}
-            if(nums[r]==nums[mid]) {--r; continue;}
+            if(nums[l]==nums[mid] && l!=mid) {++l; continue;}
+            if(nums[r]==nums[mid] && r!=mid) {--r; continue;}
             if(nums[mid]>=nums[r] ){
                 if(nums[mid]>target && nums[l]<=target)
                     r=mid-1;

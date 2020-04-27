@@ -49,3 +49,45 @@ class Solution {
     }
 }
 ```
+**C++**
+```C++
+class Solution {
+/**
+1. 框架：
+```
+int left = 0, right = 0;
+
+while (right < s.size()) {
+    window.add(s[right]);
+    right++;
+    
+    while (valid) {
+        window.remove(s[left]);
+        left++;
+    }
+}
+```
+
+**/
+public:
+    int lengthOfLongestSubstring(string s) {
+        int left=0, right=0;
+        unordered_map<char,int> window;
+        int res=0;
+        int size = s.length();
+        while(right<size){
+            char ch=s[right];
+            window[ch]++;
+            while(window[ch]>1){
+                window[s[left]]--;
+                left++;
+            }
+            res = max(res, right-left+1);
+            right++;
+
+        }
+        
+        return res;
+    }
+};
+```
